@@ -3,7 +3,12 @@ import cors from "cors";
 
 import logger, { log } from "./lib/logger/logger";
 
-export type RequestType = Request;
+export type RequestType<ParamsType, BodyType> = Request<
+  ParamsType,
+  {},
+  BodyType
+>;
+
 export type ResponseType = Response;
 
 const ALLOW_ALL_DOMAINS = "*";
