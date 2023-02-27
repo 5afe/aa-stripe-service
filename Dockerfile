@@ -3,7 +3,6 @@
 #
 FROM node:16 as base
 USER node
-ENV NODE_ENV production
 WORKDIR /app
 COPY --chown=node:node package.json yarn.lock tsconfig*.json ./
 RUN yarn install --immutable 
@@ -15,6 +14,7 @@ RUN yarn run build
 #
 FROM node:16-alpine as production
 USER node
+ENV NODE_ENV production
 COPY --chown=node:node --from=base /app/node_modules ./node_modules
 COPY --chown=node:node --from=base /app/build ./build
 CMD [ "node", "build/index.js" ]
