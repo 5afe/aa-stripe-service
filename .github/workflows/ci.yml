@@ -30,9 +30,10 @@ jobs:
         id: version
         run: |
           NEW_VERSION=$(node -p 'require("./package.json").version')
+          echo "version=v$NEW_VERSION" >> $GITHUB_OUTPUT
       - uses: docker/build-push-action@v3
         env:
-          DOCKER_IMAGE_VERSION_TAG: safeglobal/aa-stripe-service:v${{ steps.version.outputs.version }}
+          DOCKER_IMAGE_VERSION_TAG: safeglobal/aa-stripe-service:${{ steps.version.outputs.version }}
         with:
           push: true
           tags: ${{ env.DOCKER_IMAGE_VERSION_TAG }}
