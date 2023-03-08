@@ -1,13 +1,13 @@
 {
   "name": "aa-stripe-service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Account abstraction basic Stripe service",
   "main": "index.ts",
   "license": "MIT",
   "author": "Daniel Somoza",
   "private": true,
   "scripts": {
-    "build": "tsc",
+    "build": "yarn tsc",
     "prestart:prod": "yarn build",
     "start:prod": "node build/index.js | pino-pretty",
     "start": "nodemon --exec ts-node index.ts | pino-pretty",

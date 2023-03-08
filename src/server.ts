@@ -3,7 +3,12 @@ import cors from "cors";
 
 import logger, { log } from "./lib/logger/logger";
 
-export type RequestType = Request;
+export type RequestType<ParamsType, BodyType> = Request<
+  ParamsType,
+  {},
+  BodyType
+>;
+
 export type ResponseType = Response;
 
 const ALLOW_ALL_DOMAINS = "*";
@@ -32,6 +37,12 @@ class Server {
   configureCors(origins?: string[]) {
     this.app.options("*", cors<Request>());
     this.app.post(
+      "*",
+      cors<Request>({
+        origin: origins || ALLOW_ALL_DOMAINS,
+      })
+    );
+    this.app.get(
       "*",
       cors<Request>({
         origin: origins || ALLOW_ALL_DOMAINS,
