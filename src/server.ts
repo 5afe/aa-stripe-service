@@ -42,6 +42,12 @@ class Server {
         origin: origins || ALLOW_ALL_DOMAINS,
       })
     );
+    this.app.get(
+      "*",
+      cors<Request>({
+        origin: origins || ALLOW_ALL_DOMAINS,
+      })
+    );
   }
 }
 

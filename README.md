@@ -1,4 +1,8 @@
-# How to use
+# Ramp Stripe Service
+
+This repo is provided for TESTING purposes only. It's not ready for production use.
+
+We are working with Stripe and participating in the pilot testing for their new on ramp solution.
 
 ### create a .env file
 
