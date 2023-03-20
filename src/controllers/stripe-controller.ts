@@ -11,11 +11,9 @@ async function getStripeClientSecret(
   request: RequestType<{}, createSessionBodyType>,
   response: ResponseType
 ) {
-  const { walletAddress } = request.body;
-
   try {
     const stripeResponse = await stripeService.getStripeClientSecret(
-      walletAddress
+      request.body
     );
 
     return response.send(stripeResponse);

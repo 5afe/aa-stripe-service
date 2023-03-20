@@ -23,16 +23,16 @@ const axiosStripeAPI: AxiosInstance = axios.create({
 });
 
 async function getStripeClientSecret(
-  walletAddress: string
+  defaultOptions: any
 ): Promise<stripeSuccessType | stripeErrorType> {
   const { data } = await axiosStripeAPI.post<stripeSuccessType>(
     GET_STRIPE_CLIENT_SECRET_PATH,
     {
+      ...defaultOptions,
       transaction_details: {
-        wallet_address: walletAddress,
-        lock_wallet_address: true,
+        ...defaultOptions.transaction_details,
         supported_destination_networks: ["polygon"],
-      },
+      },      
     }
   );
 
