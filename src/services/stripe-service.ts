@@ -27,13 +27,7 @@ async function getStripeClientSecret(
 ): Promise<stripeSuccessType | stripeErrorType> {
   const { data } = await axiosStripeAPI.post<stripeSuccessType>(
     GET_STRIPE_CLIENT_SECRET_PATH,
-    {
-      ...defaultOptions,
-      transaction_details: {
-        ...defaultOptions.transaction_details,
-        supported_destination_networks: ["polygon"],
-      },      
-    }
+    defaultOptions
   );
 
   return data;
